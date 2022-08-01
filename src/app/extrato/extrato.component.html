@@ -1,2 +1,18 @@
-<p>Valor: {{transferencia?.valor}}</p>
-<p>Destino: {{transferencia?.destino}}</p>
+<table class="tabela">
+    <thead class="tabela__cabecalho">
+        <th class="tabela__cabbecalho__conteudo">Data</th>
+        <th class="tabela__cabbecalho__conteudo">Valor</th>
+        <th class="tabela__cabbecalho__conteudo">Destino</th>
+    </thead>
+    <tbody *ngIf="transferencias?.length > 0; else listaVazia">
+        <tr class="tabela__linha" *ngFor="let transferencia of transferencias">
+            <td class="tabela__linha__conteudo">{{transferencia?.data | date: "short"}}</td>
+            <td class="">{{transferencia?.valor | currency : 'BRL' }}</td>
+            <td class="">{{transferencia?.destino}}</td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #listaVazia>
+    <p>Nenhuma operação cadastrada</p>
+</ng-template>
+
